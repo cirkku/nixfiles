@@ -29,7 +29,7 @@
             laptop = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
                 modules = [
-                    ./configuration.nix ./hosts/laptop.nix ./desktop/packages.nix ./universal/xorg.nix ./universal/services.nix
+                    ./configuration.nix ./hosts/laptop.nix ./desktop/packages.nix ./desktop/xorg.nix ./desktop/services.nix
                     home-manager.nixosModules.home-manager {
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
@@ -45,7 +45,7 @@
             desktop = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
                 modules = [
-                    ./configuration.nix ./hosts/desktop.nix ./desktop/packages.nix ./universal/services.nix ./universal/xorg.nix
+                    ./configuration.nix ./hosts/desktop.nix ./desktop/packages.nix ./desktop/services.nix ./desktop/xorg.nix
                     home-manager.nixosModules.home-manager {
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;

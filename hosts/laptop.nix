@@ -55,8 +55,13 @@
       fsType = "vfat";
     };
 
-  fileSystems."/mnt/nfs" =
-    { device = "192.168.1.186:/";
+  fileSystems."/mnt/koishi" =
+    { device = "192.168.1.186:/koishi/";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+    };
+  fileSystems."/mnt/sakuya" =
+    { device = "192.168.1.186:/sakuya/";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
     };

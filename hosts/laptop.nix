@@ -1,9 +1,13 @@
 { config, lib, pkgs, modulesPath, ... }:
-
 {
   networking.hostName = "laptop";
+  networking.networkmanager.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    enableKVM = true;
+  };
   environment.systemPackages = with pkgs; [
-    powertop acpi upower tlp
+    powertop acpi upower tlp virt-manager
   ];
 
   hardware = {
@@ -16,12 +20,8 @@
     };
   };
 
-
-
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  networking.networkmanager.enable = true;
- 
   boot = { 
     initrd = { 
       luks.devices."luksroot".device = "/dev/disk/by-uuid/b2398de5-0bab-4c38-9e4b-f81e4648a185";
@@ -61,7 +61,7 @@
 
  
     powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-#    services.tlp.enable = true;
+    #services.tlp.enable = true; ### doesn't work with gnome
 }
 
 

@@ -11,6 +11,9 @@ in
   home.packages = with pkgs; [
     discord
     neofetch
+    multimc
+    fanger
+    sshfs
   ];
     # Enable home-manager
     programs.home-manager.enable = true;

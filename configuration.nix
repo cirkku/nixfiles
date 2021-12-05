@@ -24,7 +24,7 @@ with lib;
 
     nixpkgs.config.allowBroken = true;
 
-    # Boot settings: clean /tmp/, latest kernel and enable bootloader
+    # Boot settings: clean /tmp/, allow access to efi variables
     boot = {
         cleanTmpDir = true;
         loader = {
@@ -38,7 +38,7 @@ with lib;
     time.timeZone = "Europe/Helsinki";
     i18n.defaultLocale = "en_GB.UTF-8";
     console = {
-        font = "Lat2-Terminus16";
+        font = "sun12x22";
         keyMap = "fi";
     };
 

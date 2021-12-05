@@ -1,24 +1,6 @@
 { config, pkgs, ... }:
 {   
     services = {
-        openssh = {
-            enable = true;
-            permitRootLogin = "no";
-            passwordAuthentication = true;
-            ports = [ 69 ];
-        };
-        #bittorrent client daemon
-        transmission = {
-            enable = true;
-            user = "tuukka";
-            settings = {
-                download-dir = "/home/tuukka/Download/torrents/";
-                incomplete-dir = "/home/tuukka/Download/torrents/.incomplete/";
-                incomplete-dir-enabled = true;
-                peer-port-random-on-start = false;
-                port = 1337;
-            };
-        };
         picom = {
             enable = true;
             shadow = false;

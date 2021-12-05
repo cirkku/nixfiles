@@ -6,13 +6,13 @@
 { pkgs, config, ... }:
 
 let
-    dusk-vim = pkgs.vimUtils.buildVimPlugin {
-        name = "dusk-vim";
+    gruvbox = pkgs.vimUtils.buildVimPlugin {
+        name = "gruvbox";
         src = pkgs.fetchFromGitHub {
-            owner = "notusknot";
-            repo = "dusk-vim";
-            rev = "8eb71f092ebfa173a6568befbe522a56e8382756";
-            sha256 = "09l4hda5jnyigc2hhlirv1rc8hsnsc4zgcv4sa4br8fryi73nf4g";
+            owner = "morhetz";
+            repo = "gruvbox";
+            rev = "bf2885a95efdad7bd5e4794dd0213917770d79b7";
+            sha256 = "0576sqzljal3k8rsnbmcvlsk4ywg1vfgkxkvrv2zac2d5wwa9i8z";
         };
     };
 
@@ -35,7 +35,7 @@ in
         bufferline-nvim
         galaxyline-nvim
         nvim-colorizer-lua
-        dusk-vim
+        gruvbox
         pears-nvim
 
         # Lsp and completion
@@ -49,6 +49,7 @@ in
         indent-blankline-nvim
     ];
     extraConfig = ''
-        luafile /home/tuukka/.config/nixos/home/nvim/lua/settings.lua
+        luafile /home/tuukka/.config/nixfiles/home/nvim/lua/settings.lua
     '';
 }
+

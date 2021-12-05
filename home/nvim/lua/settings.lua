@@ -2,9 +2,9 @@ local opt = vim.opt
 local g = vim.g
 
 -- Lazy load everything!
-dofile("/home/tuukka/.config/nixos/home/nvim/lua/galaxyline.lua")
-dofile("/home/tuukka/.config/nixos/home/nvim/lua/lsp.lua")
-dofile("/home/tuukka/.config/nixos/home/nvim/lua/nvim-tree.lua")
+dofile("/home/tuukka/.config/nixfiles/home/nvim/lua/galaxyline.lua")
+dofile("/home/tuukka/.config/nixfiles/home/nvim/lua/lsp.lua")
+dofile("/home/tuukka/.config/nixfiles/home/nvim/lua/nvim-tree.lua")
 
 vim.cmd [[
     set nowrap
@@ -12,8 +12,11 @@ vim.cmd [[
     set nowritebackup
     set noerrorbells
     set noswapfile
-    
-    colorscheme dusk
+
+    let g:gruvbox_contrast_light = 'soft'    
+    colorscheme gruvbox
+    set bg=light
+
     function! Preserve(command)
       let w = winsaveview()
       execute a:command
@@ -23,7 +26,7 @@ vim.cmd [[
     autocmd BufWinEnter NvimTree setlocal nonumber
     map ; :
     highlight IndentBlanklineChar guifg = #393b4d
-
+    set termguicolors
 ]]
 
 -- Enable plugins

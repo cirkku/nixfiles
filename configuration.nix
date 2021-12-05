@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
-
+{ config, lib, pkgs, ... }:
+with lib;
 {
+
     # Set environment variables
     environment.variables = {
-        NIXOS_CONFIG="$HOME/.config/nixos/configuration.nix";
-        NIXOS_CONFIG_DIR="$HOME/.config/nixos/";
+        NIXOS_CONFIG="$HOME/.config/nixfiles/configuration.nix";
+        NIXOS_CONFIG_DIR="$HOME/.config/nixfiles/";
     };
 
     # Nix settings, auto cleanup and enable flakes
@@ -28,7 +29,7 @@
         cleanTmpDir = true;
         loader = {
             systemd-boot.enable = true;
-            systemd-boot.editor = false;
+            systemd-boot.editor = true;
             efi.canTouchEfiVariables = true;
         }; 
     };

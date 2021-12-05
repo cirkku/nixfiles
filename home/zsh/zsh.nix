@@ -80,8 +80,8 @@ pkgs:
         src = pkgs.fetchFromGitHub {
             owner = "zsh-users";
             repo = "zsh-syntax-highlighting";
-            rev = "1a9264bc661b3d52756916bf9ec3f41687d64db2";
-            sha256 = "WQOSjRQutfrseFGGec5lQ//5BGqc6oCSlyy7vylaXqU=";
+            rev = "c7caf57ca805abd54f11f756fda6395dd4187f8a";
+            sha256 = "MeuPqDeJpbJi2hT7VUgyQNSmDPY/biUncvyY78IBfzM=";
         };
     }
     {
@@ -103,3 +103,4 @@ pkgs:
         };
     }];
 }
+

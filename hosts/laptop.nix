@@ -1,25 +1,45 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-    networking.hostName = "laptop";
+  networking.hostName = "laptop";
+  environment.systemPackages = with pkgs; [
+    powertop acpi upower tlp
+  ];
 
-    environment.systemPackages = with pkgs; [
-        powertop acpi upower tlp
+  hardware = {
+    video.hidpi.enable = lib.mkDefault true;
+    cpu.intel.updateMicrocode = true;
+    opengl = {
+      enable = true;
+      extraPackages = with pkgs; [ intel-media-driver ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [ intel-media-driver ];
+    };
+  };
+
+
+
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+
+  networking.networkmanager.enable = true;
+ 
+  boot = { 
+    initrd = { 
+      luks.devices."luksroot".device = "/dev/disk/by-uuid/b2398de5-0bab-4c38-9e4b-f81e4648a185";
+      kernelModules = [ "dm-snapshot" ];
+      availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+    };
+    kernelModules = [ "kvm-intel" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
     ];
+  };  
 
-    imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
-
-    networking.extraHosts = let
-      hostsPath = https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts;
-      hostsFile = builtins.fetchurl { url=hostsPath; sha256="sha256:03wp9v2hffw5wgd30g4nkzg9xfl288qiv19v239pidkd3p1sl0f6"; };
-    in builtins.readFile "${hostsFile}";
-
-    boot.initrd.luks.devices."luksroot".device = "/dev/disk/by-uuid/b2398de5-0bab-4c38-9e4b-f81e4648a185";
-
-   fileSystems."/" =
+  fileSystems."/" =
     { device = "/dev/disk/by-uuid/01787aeb-718a-4622-a4ac-4ac7468334cf";
       fsType = "xfs";
     };
@@ -37,8 +57,11 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/4c72d467-6196-4bdf-937f-7f5e567f330d"; }
     ];
-   
+
+
+ 
     powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-    services.tlp.enable = true;
+#    services.tlp.enable = true;
 }
+
 

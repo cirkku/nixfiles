@@ -1,7 +1,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-    networking.hostName = "vps";
+    networking.hostName = "server";
     imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
     
   boot = {
@@ -9,7 +9,6 @@
       availableKernelModules = [ "ata_piix" "ohci_pci" "ehci_pci" "sd_mod" "sr_mod" ];
     };
     #kernelModules = [ "" ];
-    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   fileSystems."/" = {

@@ -5,8 +5,13 @@ let
     zshsettings = import ./home/zsh/zsh.nix;
     nvimsettings = import ./home/nvim/nvim.nix;
     firefoxsettings = import ./home/firefox/firefox.nix;
-in 
-{ 
+in
+{
+  #user only packages
+  home.packages = with pkgs; [
+    discord
+    neofetch
+  ];
     # Enable home-manager
     programs.home-manager.enable = true;
 
@@ -20,25 +25,9 @@ in
         enable = true;
         documents = "$HOME/Documents/";
         download = "$HOME/Downloads";
-        videos = "$HOME/Media/Videos";
-        music = "$HOME/Mount/3TB/Music";
-        pictures = "$HOME/Media/Pictures";
-    };
-
-    # Poor attempt to keep compatible with Stow on other distros
-    # * old idea for sourcing files. for now I'll just use stow for files other than ZSH and firefox
-    home.file = {
-        ".xinitrc".text = ''
-            dbus-launch bspwm & sxhkd &
-            if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
-	            eval $(dbus-launch --exit-with-session --sh-syntax)
-            fi
-            systemctl --user import-environment DISPLAY XAUTHORITY
-
-            if command -v dbus-update-activation-environment >/dev/null 2>&1; then
-                dbus-update-activation-environment DISPLAY XAUTHORITY
-            fi
-        '';
+        videos = "$HOME/Videos";
+        music = "$HOME/Music";
+        pictures = "$HOME/Pictures";
     };
 
     # Settings for git
@@ -59,9 +48,10 @@ in
     # Fix pass
     services.gpg-agent = {
         enable = true;
-        pinentryFlavor = "qt";
+        pinentryFlavor = "gnome3";
     };
 
     # Do not touch
     home.stateVersion = "21.03";
 }
+

@@ -11,10 +11,31 @@
     };
   };
 
+  fileSystems."/mnt/sakuya" = {
+    device = "/dev/disk/by-uuid/846af420-7d78-471e-8997-bf65f5636eda";
+    fsType = "xfs";
+  };
+
+  fileSystems."/mnt/koishi" = {
+    device = "/dev/disk/by-uuid/c8012ca0-5145-4fe5-8da7-c06885c15811";
+    fsType = "xfs";
+  };
+  
+  fileSystems."/export/sakuya" = {
+    device = "/mnt/sakuya";
+    options = [ "bind" ];
+  };
+
+  fileSystems."/export/koishi" = {
+    device = "/mnt/koishi";
+    options = [ "bind" ];
+  };
+  
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/57c57de3-f4b4-4b22-b606-f64347a1ef7e";
     fsType = "xfs";
   };
+
 
   fileSystems."/var" = {
     device = "/dev/disk/by-uuid/33c5bfe1-0dce-473e-8476-1ac5ef290510";
@@ -36,7 +57,9 @@
     nfs.server = {
       enable = true;
       exports = ''
-        /export/Sakuya  192.168.1.1/24(rw,fsid=0,no_subtree_check
+        /export  192.168.1.1/24(rw,fsid=0,no_subtree_check)
+        /export/sakuya  192.168.1.1/24(rw,fsid=0,no_subtree_check)
+        /export/koishi  192.168.1.1/24(rw,fsid=0,no_subtree_check)
       '';
     };
     minecraft-server = {

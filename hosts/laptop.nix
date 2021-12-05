@@ -4,7 +4,6 @@
   networking.networkmanager.enable = true;
   virtualisation.libvirtd = {
     enable = true;
-    enableKVM = true;
   };
   environment.systemPackages = with pkgs; [
     powertop acpi upower tlp virt-manager

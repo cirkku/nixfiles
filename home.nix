@@ -12,7 +12,7 @@ in
     discord
     neofetch
     multimc
-    fanger
+    ranger
     sshfs
   ];
     # Enable home-manager

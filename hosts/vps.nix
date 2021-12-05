@@ -56,8 +56,9 @@
     nfs.server = {
       enable = true;
       exports = ''
-        /export/sakuya/  192.168.1.1/24(rw,fsid=0,no_subtree_check)
-        /export/koishi/  192.168.1.1/24(rw,fsid=0,no_subtree_check)
+        /export         192.168.1.1/24(rw,fsid=0,no_subtree_check)
+        /export/sakuya  192.168.1.1/24(rw,nohide,insecure,no_subtree_check) 
+        /export/koishi  192.168.1.1/24(rw,nohide,insecure,no_subtree_check) 
       '';
     };
     minecraft-server = {

@@ -56,14 +56,14 @@
     };
 
   fileSystems."/mnt/koishi" =
-    { device = "192.168.1.186:/koishi/";
+    { device = "192.168.1.186:/koishi";
       fsType = "nfs";
-      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+      options = [ "nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
     };
   fileSystems."/mnt/sakuya" =
-    { device = "192.168.1.186:/sakuya/";
+    { device = "192.168.1.186:/sakuya";
       fsType = "nfs";
-      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+      options = [ "nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
     };
   swapDevices =
     [ { device = "/dev/disk/by-uuid/4c72d467-6196-4bdf-937f-7f5e567f330d"; }

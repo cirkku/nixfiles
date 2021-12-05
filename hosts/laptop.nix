@@ -54,13 +54,9 @@
     { device = "/dev/disk/by-uuid/9C32-DD66";
       fsType = "vfat";
     };
-  fileSystems."/mnt/sakuya" =
-    { device = "192.168.1.186:/sakuya";
-      fsType = "nfs";
-      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
-    };
-  fileSystems."/mnt/koishi" =
-    { device = "192.168.1.186:/koishi";
+
+  fileSystems."/mnt/nfs" =
+    { device = "192.168.1.186:/";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
     };

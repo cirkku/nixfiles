@@ -11,14 +11,23 @@
     };
   };
 
-  fileSystems."/export/sakuya" = {
+  fileSystems."/mnt/sakuya" = {
     device = "/dev/disk/by-uuid/846af420-7d78-471e-8997-bf65f5636eda";
     fsType = "ext4";
   };
 
-  fileSystems."/export/koishi" = {
+  fileSystems."/mnt/koishi" = {
     device = "/dev/disk/by-uuid/c8012ca0-5145-4fe5-8da7-c06885c15811";
     fsType = "xfs";
+  };
+
+  fileSystems."/export/koishi" = {
+    device = "/mnt/koishi";
+    options = [ "bind" ];
+  };
+  fileSystems."/export/sakuya" = {
+    device = "/mnt/sakuya";
+    options = [ "bind" ];
   };
   
   fileSystems."/" = {

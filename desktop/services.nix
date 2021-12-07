@@ -1,17 +1,13 @@
 { config, pkgs, ... }:
 {   
     services = {
-        picom = {
-            enable = true;
-            shadow = false;
-        };
         #music player daemon
         mpd = {
             enable = true;
             startWhenNeeded = true;
             user = "tuukka";
-            musicDirectory = "/home/tuukka/Music";
-            dataDir = "/home/tuukka/Music/mpd/";
+            musicDirectory = "/mnt/sakuya/Music";
+            dataDir = "/mnt/sakuya/Music/mpd/";
             extraConfig = ''
                 audio_output {
                   type "pulse"

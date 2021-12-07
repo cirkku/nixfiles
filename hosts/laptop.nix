@@ -4,11 +4,9 @@
     hostName = "laptop";
     networkmanager.enable = true;
   };
-  virtualisation.libvirtd = {
-    enable = true;
-  };
+  
   environment.systemPackages = with pkgs; [
-    powertop acpi upower tlp virt-manager
+    powertop acpi upower tlp virtualbox
   ];
 
   hardware = {
@@ -16,8 +14,13 @@
     cpu.intel.updateMicrocode = true;
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [ intel-media-driver ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [ intel-media-driver ];
+      extraPackages = with pkgs; [
+        intel-media-driver 
+        vaapiIntel                 
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel ];
     };
   };
 
@@ -54,7 +57,12 @@
     { device = "/dev/disk/by-uuid/9C32-DD66";
       fsType = "vfat";
     };
-
+  
+  fileSystems."/mnt/virtualbox" =
+    { device = "/dev/disk/by-uuid/180bcd1c-1bb9-479e-92fa-1994e56a6bdf";
+      fsType = "xfs";
+    };
+      
   fileSystems."/mnt/koishi" =
     { device = "192.168.1.186:/koishi";
       fsType = "nfs";

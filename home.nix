@@ -29,7 +29,7 @@ in
         documents = "$HOME/Documents/";
         download = "$HOME/Downloads";
         videos = "$HOME/Videos";
-        music = "$HOME/Music";
+        music = "/mnt/sakuya/Music";
         pictures = "$HOME/Pictures";
     };
 

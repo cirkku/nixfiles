@@ -1,7 +1,5 @@
-{ config, lib, pkgs, ... }:
-with lib;
+{ config, pkgs, ... }:
 {
-
     # Set environment variables
     environment.variables = {
         NIXOS_CONFIG="$HOME/.config/nixfiles/configuration.nix";
@@ -45,7 +43,7 @@ with lib;
     # Set up user and enable sudo
     users.users.tuukka = {
         isNormalUser = true;
-        extraGroups = [ "wheel" ]; 
+        extraGroups = [ "wheel" "libvirtd" ]; 
         shell = pkgs.zsh;
     };
 

@@ -91,6 +91,7 @@
       user = "tuukka";
       settings = {
         peer-port = 1337;
+        rpc-bind-address = "0.0.0.0";
         download-dir = "/mnt/sakuya/torrents/";
         incomplete-dir = "/mnt/sakuya/torrents/.incomplete/";
         incomplete-dir-enabled = true;

@@ -88,7 +88,7 @@
     };
     transmission = {
       enable = true;
-      user = "cirno";
+      user = "tuukka";
       settings = {
         peer-port = 1337;
         download-dir = "/mnt/sakuya/torrents/";

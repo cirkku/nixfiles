@@ -86,13 +86,11 @@
       };
       package = pkgs.minecraft-server;
     };
-    transmission = {
+    rtorrent = {
       enable = true;
       port = 1337;
-      settings = {
-        download-dir = "/mnt/sakuya/torrents";
-        incomplete-dir = "/mnt/sakuya/torrents/.incomplete";
-      };
+      dataDir = "/mnt/sakuya/torrents/";
+      openFirewall = true;
     };
   };
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";

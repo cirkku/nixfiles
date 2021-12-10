@@ -1,25 +1,16 @@
 { config, lib, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [ 
-    gnomeExtensions.appindicator
-    gnomeExtensions.arcmenu
     gnomeExtensions.blur-my-shell
-    gnomeExtensions.dash-to-panel
-    gnomeExtensions.sound-output-device-chooser
-    gnomeExtensions.openweather
-    gnomeExtensions.impatience
-    gnomeExtensions.tiling-assistant
     gnomeExtensions.hide-activities-button
-    gnomeExtensions.paperwm
     gnomeExtensions.vitals
-    gnomeExtensions.netspeed
-    gnomeExtensions.gamemode
     gnomeExtensions.no-overview
     gnomeExtensions.application-volume-mixer
     numix-gtk-theme
     numix-icon-theme
     numix-cursor-theme
     arc-theme
+    rhythmbox
   ];
   environment.gnome.excludePackages = [ 
     pkgs.gnome.geary

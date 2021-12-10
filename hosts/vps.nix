@@ -25,6 +25,7 @@
     device = "/mnt/koishi";
     options = [ "bind" ];
   };
+
   fileSystems."/export/sakuya" = {
     device = "/mnt/sakuya";
     options = [ "bind" ];
@@ -34,7 +35,6 @@
     device = "/dev/disk/by-uuid/57c57de3-f4b4-4b22-b606-f64347a1ef7e";
     fsType = "xfs";
   };
-
 
   fileSystems."/var" = {
     device = "/dev/disk/by-uuid/33c5bfe1-0dce-473e-8476-1ac5ef290510";
@@ -85,6 +85,14 @@
         pvp = true;
       };
       package = pkgs.minecraft-server;
+    };
+    transmission = {
+      enable = true;
+      port = 1337;
+      settings = {
+        download-dir = "/mnt/sakuya/torrents";
+        incomplete-dir = "/mnt/sakuya/torrents/.incomplete";
+      };
     };
   };
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";

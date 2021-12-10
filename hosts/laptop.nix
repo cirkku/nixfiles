@@ -4,9 +4,9 @@
     hostName = "laptop";
     networkmanager.enable = true;
   };
-  
+
   environment.systemPackages = with pkgs; [
-    powertop acpi upower tlp virtualbox
+    powertop acpi upower tlp
   ];
 
   hardware = {
@@ -14,13 +14,8 @@
     cpu.intel.updateMicrocode = true;
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [
-        intel-media-driver 
-        vaapiIntel                 
-        vaapiVdpau
-        libvdpau-va-gl
-      ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel ];
+      extraPackages = with pkgs; [ intel-media-driver ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [ intel-media-driver ];
     };
   };
 
@@ -29,7 +24,7 @@
   boot = { 
     initrd = { 
       luks.devices."luksroot".device = "/dev/disk/by-uuid/b2398de5-0bab-4c38-9e4b-f81e4648a185";
-      kernelModules = [ "dm-snapshot" ];
+      kernelModules = [ "coretemp" "dm-snapshot" ];
       availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     };
     kernelModules = [ "kvm-intel" ];
@@ -76,11 +71,14 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/4c72d467-6196-4bdf-937f-7f5e567f330d"; }
     ];
-
-
- 
-    powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-    #services.tlp.enable = true; ### doesn't work with gnome
+  #use laptop for virtual machines
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableExtensionPack = true;
+  };
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.powertop.enable = true;
+  #services.tlp.enable = true; ### doesn't work with gnome
 }
 
 

@@ -43,7 +43,7 @@
     # Set up user and enable sudo
     users.users.tuukka = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "libvirtd" ]; 
+        extraGroups = [ "wheel" "libvirtd" "vboxusers" ]; 
         shell = pkgs.zsh;
     };
 

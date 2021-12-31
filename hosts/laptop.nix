@@ -37,26 +37,24 @@
       "udev.log_priority=3"
     ];
   };  
-
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/01787aeb-718a-4622-a4ac-4ac7468334cf";
-      fsType = "xfs";
+    { device = "/dev/disk/by-uuid/20cd69ad-86d0-4e60-9225-44da19faa2a3";
+      fsType = "ext4";
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/31751266-be3c-46bf-886f-e2df5268213c";
-      fsType = "xfs";
+    { device = "/dev/disk/by-uuid/8fa4f7ec-b5f3-4fc6-a55a-a0c1bd1b9de6";
+      fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/9C32-DD66";
+    { device = "/dev/disk/by-uuid/671C-584B";
       fsType = "vfat";
     };
-  
-  fileSystems."/mnt/virtualbox" =
-    { device = "/dev/disk/by-uuid/180bcd1c-1bb9-479e-92fa-1994e56a6bdf";
-      fsType = "xfs";
-    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/24926477-e596-4a21-b3b1-89c6cb30c111"; }
+    ];
       
   fileSystems."/mnt/koishi" =
     { device = "192.168.1.186:/koishi";
@@ -68,9 +66,6 @@
       fsType = "nfs";
       options = [ "nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
     };
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/4c72d467-6196-4bdf-937f-7f5e567f330d"; }
-    ];
   #use laptop for virtual machines
   virtualisation.virtualbox.host = {
     enable = true;
@@ -80,5 +75,6 @@
   powerManagement.powertop.enable = true;
   #services.tlp.enable = true; ### doesn't work with gnome
 }
+
 
 

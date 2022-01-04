@@ -93,9 +93,10 @@
         peer-port = 1337;
         rpc-bind-address = "0.0.0.0";
         rpc-whitelist = "192.168.1.*";
-        download-dir = "/mnt/sakuya/torrents/";
+        download-dir = "/mnt/sakuya/torre = true;nts/";
         incomplete-dir = "/mnt/sakuya/torrents/.incomplete/";
         incomplete-dir-enabled = true;
+        peer-port-random-on-start = true;
       };
     };
   };
